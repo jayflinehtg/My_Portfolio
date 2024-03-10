@@ -31,6 +31,7 @@ html {
 /* --------------------------------INI BAGIAN AUTENTIKASI------------------------------- */
 .autentikasi {
     display: flex;
+    margin-left: 40px;
     gap: 20px;
 }
 
@@ -114,7 +115,7 @@ html {
 .navbar a:hover,
 .navbar a.active {
     color: #2682c3;
-    transform: scale(1.6);
+    transform: scale(1.2);
 }
 
 span {
@@ -793,8 +794,8 @@ slide-about {
     padding: 1% 10%;
 }
 
-.contact .contact-content .contact1 {
-    margin-left: -230px;
+.contact-content .contact1 {
+    margin-left: 155px;
 }
 
 .contact-content h2 {
@@ -804,8 +805,8 @@ slide-about {
     display: flex-start;
     margin-top: 60px;
     margin-bottom: 1px;
-    text-align: center; /* Menengahkan teks horizontal */
-    width: 100%; /* Mengisi lebar agar sesuai dengan parent */
+    text-align: center;
+    width: 100%;
 }
 
 .contact-content p {

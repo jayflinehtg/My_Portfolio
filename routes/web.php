@@ -15,8 +15,9 @@ use App\Http\Controllers\PortfolioController;
 */
 
 Route::get('/', function () {
-    return view('index');
-});
+  return view('guess');
+})->name('index');
+
 
 Route::get('/', [PortfolioController::class, 'index']);
 Route::post('/portfolio', [PortfolioController::class, 'store']);

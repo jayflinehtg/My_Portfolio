@@ -1,29 +1,27 @@
-document.addEventListener("DOMContentLoaded", function () {
-    let sections = document.querySelectorAll("section");
-    let navLinks = document.querySelectorAll("header nav a");
+let sections = document.querySelectorAll("section");
+let navLinks = document.querySelectorAll("header nav a");
 
-    window.addEventListener("scroll", function () {
+window.onscroll = () => {         
+
+    sections.forEach(sec => {
+        let offset = sec.offsetTop;
+        let height = sec.offsetHeight;
+        let id = sec.getAttribute("id");
         let scrollY = window.scrollY + 140; // Menambahkan tinggi header
 
-        sections.forEach((sec) => {
-            let offset = sec.offsetTop;
-            let height = sec.offsetHeight;
-            let id = sec.getAttribute("id");
-
-            if (scrollY >= offset && scrollY < offset + height) {
-                navLinks.forEach((link) => {
-                    link.classList.remove("active");
-                });
-                let activeLink = document.querySelector(
-                    'header nav a[href="#' + id + '"]'
-                );
-                if (activeLink) {
-                    activeLink.classList.add("active");
-                }
-            }
-        });
+       if(scrollY >= offset && scrollY < offset + height) {
+           navLinks.forEach(link => {
+               link.classList.remove("active");
+           });
+           document.querySelector("header nav a[href*=" + id + "]").classList.add("active");
+       }
     });
+};
+
+document.getElementById("loginBtn").addEventListener("click", function() {
+    window.location.href = "{{ route('index') }}"; // Mengarahkan ke route 'index'
 });
+
 
 // Ambil elemen formulir berdasarkan ID
 const form = document.getElementById("contact-form");
@@ -42,7 +40,6 @@ form.addEventListener("submit", function (e) {
     }
 });
 
-// Fungsi untuk melakukan validasi formulir
 // Fungsi untuk melakukan validasi formulir
 function validateForm() {
     let isValid = true;
