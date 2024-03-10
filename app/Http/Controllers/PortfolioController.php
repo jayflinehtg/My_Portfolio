@@ -4,56 +4,70 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Portfolio;
+
 class PortfolioController extends Controller
 {
     public function store(Request $request)
     {
-    $request->validate([
-        'judul' => 'required',
-        'tahun' => 'required',
-    ]);
-    $portfolio = new Portfolio;
+        $request->validate([
+            'judul' => 'required',
+            'tahun' => 'required',
+        ]);
+        
+        Portfolio::create([
+            'judul' => $request->judul,
+            'tahun' => $request->tahun,
+        ]);
 
-    $portfolio->judul = $request->judul;
-    $portfolio->tahun = $request->tahun;
-
-    $portfolio->save();
-
-    return redirect('/#experience');
+        return redirect('/#experience');
     }
+
     public function index()
     {
         $portfolio = Portfolio::all();
         return view('guess', compact('portfolio'));
     }
 
-    // ----------------------------Untuk Edit-------------------------------------
+    public function admin()
+    {
+        $portfolio = Portfolio::all();
+        return view('index', compact('portfolio'));
+    }
+
     public function edit($id)
     {
-        $portfolio = Portfolio::find($id);
-        return response()->json($portfolio);
+        try {
+            $portfolio = Portfolio::find($id);
+            if ($portfolio) {
+                return response()->json($portfolio);
+            } else {
+                return response()->json(['message' => 'Data not found for ID: ' . $id], 404);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Error retrieving data: ' . $e->getMessage()], 500);
+        }
     }
 
-    // ----------------------------Untuk update-------------------------------------
     public function update(Request $request, $id)
     {
-    $request->validate([
-        'judul' => 'required',
-        'tahun' => 'required',
-    ]);
+        $request->validate([
+            'judul' => 'required',
+            'tahun' => 'required',
+        ]);
 
-    $portfolio = Portfolio::find($id);
+        $portfolio = Portfolio::find($id);
 
-    $portfolio->judul = $request->judul;
-    $portfolio->tahun = $request->tahun;
-
-    $portfolio->save();
-
-    return redirect('/#experience');
+        if ($portfolio) {
+            $portfolio->update([
+                'judul' => $request->judul,
+                'tahun' => $request->tahun,
+            ]);
+            return redirect('/#experience');
+        } else {
+            return response()->json(['message' => 'Data not found for ID: ' . $id], 404);
+        }
     }
 
-
-    // ------------------------------------UNTUK DELETE-------------------------------------
     public function destroy($id)
     {
         try {

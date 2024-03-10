@@ -34,7 +34,7 @@
         <a href="#portfolio">Projects</a>
         <a href="#contact">Contact</a>
       <div class="autentikasi">
-        <a href="/index"><button id="loginBtn">Login</button></a>
+        <a href="/"><button id="loginBtn">Logout</button></a>
       </div>
       </nav>
     </header>

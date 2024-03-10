@@ -34,7 +34,7 @@
         <a href="#portfolio">Projects</a>
         <a href="#contact">Contact</a>
       <div class="autentikasi">
-        <a href="/index"><button id="loginBtn">Login</button></a>
+        <a href="{{route('index')}}"><button id="loginBtn">Login</button></a>
       </div>
       </nav>
     </header>
@@ -343,9 +343,6 @@
 <div class="experience" id="experience">
     <h2><center>Experiences</center></h2>
     <br>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="margin-left: 260px;">
-        Add Experience
-    </button>
 
     <div class="modal fade" id="myModal">
         <div class="modal-dialog">
@@ -382,39 +379,6 @@
         </div>
     </div>
 
-    <!-- Modal Edit -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editModalLabel" style="color: #081b29">Edit Experience</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="editExperienceForm" data-url="{{ url('/portfolio/') }}" method="POST">
-                    @csrf
-                    @method('PUT')
-
-                    <input type="hidden" id="editId" name="id">
-
-                    <label for="edit-judul">Judul</label>
-                    <input type="text" id="edit-judul" name="judul">
-
-                    <label for="edit-tahun">Periode</label>
-                    <input type="text" id="edit-tahun" name="tahun">
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" id="updatePortfolioBtn">Update</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Modal Edit -->
-
 
     <div class="container-timeline">
     <div class="vertical-timeline">
@@ -424,19 +388,11 @@
                 <div class="timeline-content">
                     <h1>{{$item->judul}}</h1>
                     <p>{{$item->tahun}}</p>
-                    <!-- Tombol edit dengan menggunakan modal -->
-                    <button class="btn btn-warning btn-sm open-edit-modal" data-portfolio-id="{{ $item->id }}" data-toggle="modal" data-target="#editModal">
-                        Edit
-                    </button>
-                    <!-- Tombol delete -->
-                    <button class="btn btn-danger btn-sm delete-portfolio" data-portfolio-id="{{ $item->id }}">
-                    Delete
-                    </button>
                 </div>
             </li>
             @empty
             <li>
-                <h4>There is no such data in the database</h4>
+
             </li>
             @endforelse
         </ul>
@@ -500,7 +456,7 @@
           send messages or follow my account on the platform your favorite!
         </p>
         <div class="cont-soc">
-          <a href="https://github.com/jayfline" target="_blank"><i class="bx bxl-github"></i></a>
+          <a href="https://github.com/jayflinehtg" target="_blank"><i class="bx bxl-github"></i></a>
           <a href="https://instagram.com/jayy.dy?utm_source=qr&igshid=MzNlNGNkZWQ4Mg==" target="_blank"><i
               class="bx bxl-instagram"></i></a>
           <a href="https://www.linkedin.com/in/jayflinehutagalung/" target="_blank"><i class="bx bxl-linkedin"></i></a>

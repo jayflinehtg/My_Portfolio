@@ -14,12 +14,13 @@ use App\Http\Controllers\PortfolioController;
 |
 */
 
-Route::get('/', function () {
-  return view('guess');
-})->name('index');
+// Route::get('/', function () {
+//   return view('guess');
+// })->name('index');
 
 
 Route::get('/', [PortfolioController::class, 'index']);
+Route::get('/admin', [PortfolioController::class, 'admin'])->name('index');;
 Route::post('/portfolio', [PortfolioController::class, 'store']);
 Route::get('/portfolio/{id}/edit', [PortfolioController::class, 'edit'])->name('portfolio.edit');
 Route::put('/portfolio/{id}', [PortfolioController::class, 'update']);
